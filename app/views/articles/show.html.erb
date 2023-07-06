@@ -1,10 +1,12 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @article %>
-
-<div>
-  <%= link_to "Edit this article", edit_article_path(@article) %> |
-  <%= link_to "Back to articles", articles_path %>
-
-  <%= button_to "Destroy this article", @article, method: :delete %>
-</div>
+<h1>Show article details</h1>
+<p><strong>Title:</strong> <%=@article.title%> </p>
+<p><strong>Description: </strong><%=@article.description%></p>
+<p>
+<%= link_to 'Edit', edit_article_path(@article) %>
+</p>
+<p>
+<%= button_to 'Delete', article_path(@article), method: :delete, data: {confirm: "Are you sure you want to delete this post?" %>
+</p>
+<p>
+<%= link_to 'Return to artciles path', articles_path(@article) %>
+</p>

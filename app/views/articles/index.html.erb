@@ -1,14 +1,27 @@
-<p style="color: green"><%= notice %></p>
+<h1>Articles listings page </h1>
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th colspan="3">Actions</th>
+        </tr>
+    </thead>
 
-<h1>Articles</h1>
+    <tbody>
+    <%@articles.each do |article|%>
+        <tr>
+            <td><%=article.title%></td>
+            <td><%=article.description%></td>
+            <td><%=link_to 'Show', article_path(article)%></td>
+            <td><%=link_to 'Edit', edit_article_path(article)%></td>
+            <td><%= button_to 'Delete', article_path(article), method: :delete, data: {confirm: "Are you sure you want to delete this post?"} %></td>
+        </tr>
+    <%end%>
+    </tbody>
 
-<div id="articles">
-  <% @articles.each do |article| %>
-    <%= render article %>
-    <p>
-      <%= link_to "Show this article", article %>
-    </p>
-  <% end %>
-</div>
+</table>
+<p>
+<%= link_to 'Create new article', new_article_path%>
+</p>
 
-<%= link_to "New article", new_article_path %>
