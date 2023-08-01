@@ -1,5 +1,7 @@
 <h1 class="text-center mt-4"><%=@user.username%>'s contributions</h1>
+<div class="text-center mt-4">
+<%= link_to 'Edit profile', edit_user_path(@user), class: "btn btn-outline-info"%>
+</div>
 <%= render 'shared/articles_list', obj: @user.articles%>
 <p>
-<%= link_to 'Return to articles path', articles_path(@user) %>
 </p>
