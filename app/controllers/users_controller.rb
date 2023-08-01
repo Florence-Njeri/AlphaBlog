@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     def update
         @user = User.find(params[:id])
         if @user.update(user_params)
-            flash[:notice] = "Your account was updated successfully"
+            flash[:notice] = "Your account was updated successfully!"
             redirect_to articles_path
           else
             render 'edit'
@@ -30,6 +30,13 @@ class UsersController < ApplicationController
     end
     # /users/:id
     def show
+        @user = User.find(params[:id])
+    end
+
+    def destroy
+        @user.destroy
+        flash[:notice] = "User with id #{params[:id]} was deleted successfully"
+        redirect_to users_path
     end
 
     private
