@@ -15,6 +15,23 @@ class UsersController < ApplicationController
 
     end
 
+    def edit
+        @user = User.find(params[:id])
+    end
+    # /users/:id/edit
+    def update
+        @user = User.find(params[:id])
+        if @user.update(user_params)
+            flash[:notice] = "Your account was updated successfully"
+            redirect_to articles_path
+          else
+            render 'edit'
+          end
+    end
+    # /users/:id
+    def show
+    end
+
     private
     # Use callbacks to share common setup or constraints between actions.
 
