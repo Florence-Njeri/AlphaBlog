@@ -6,12 +6,12 @@
 
 - Add CRUD actions to the user's MVC
 - Create a users table and model
-- Add validations to the users model
+- Add validations to the user model
   * Username must be present, unique and between 3 -25 characters
   * Email must be present and unique, max 105 characters
   * Email must use a valid format, check with email regex
  
-***Articles**
+***Articles** 
 
 - Add CRUD actions to the article's MVC
 - Create an article's table and model
