@@ -46,7 +46,7 @@ jobs:
           date +%s > README.md
           git add .
           git commit -m "Automated translation.io sync"
-          git push origin translation-sync-branch
+          git push origin translation-sync-branch-timestamp
           git status
 
       - name: Create Pull Request
@@ -55,4 +55,4 @@ jobs:
           commit-message: "Auto-generated Translation Sync PR"
           title: "Auto-generated Translation.io Sync PR"
           body: "This PR was automatically generated to synchronize translations."
-          branch: translation-sync-branch
+          branch: translation-sync-branch-timestamp
