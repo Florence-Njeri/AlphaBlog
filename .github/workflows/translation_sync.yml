@@ -36,7 +36,7 @@ jobs:
 
       - name: Run translation sync
         run: |
-          bundle exec rake translation:sync
+          # bundle exec rake translation:sync
 
       - name: Commit and push changes
         run: |
