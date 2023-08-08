@@ -32,11 +32,11 @@ jobs:
 
       - name: Create new branch
         run: |
-          git checkout -b translation-sync-branch
+          git checkout -b translation-sync-branch-timestamp
 
       - name: Run translation sync
         run: |
-          # bundle exec rake translation:sync
+          bundle exec rake translation:sync
 
       - name: Commit and push changes
         run: |
