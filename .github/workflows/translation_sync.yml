@@ -43,7 +43,7 @@ jobs:
          # Author identity
           git config --global user.name "Florence Njeri"
           git config --global user.email "flonsie17@gmail.com"
-          date +%s > report.txt
+          date +%s > README.md
           git add .
           git commit -m "Automated translation.io sync"
           git push origin translation-sync-branch
