@@ -1,0 +1,51 @@
+name: Sync Translation.io
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  translation_sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6.3
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Pull latest master locally
+        run: |
+          git checkout master
+          git pull origin master
+
+      - name: Create new branch
+        run: |
+          git checkout -b translation-sync-branch
+
+      - name: Run translation sync
+        run: |
+          bundle exec rake translation:sync
+
+      - name: Commit and push changes
+        run: |
+          git add .
+          git commit -m "Automated translation.io sync"
+          git push origin translation-sync-branch
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: "Auto-generated Translation Sync PR"
+          title: "Auto-generated Translation.io Sync PR"
+          body: "This PR was automatically generated to synchronize translations."
+          branch: translation-sync-branch
