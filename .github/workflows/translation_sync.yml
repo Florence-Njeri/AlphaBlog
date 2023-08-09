@@ -42,6 +42,7 @@ jobs:
       - name: Commit and push changes
         run: |
          # Author identity
+          set -x
           git config --global user.name "Florence-Njeri"
           git config --global user.email "flonsie17@gmail.com"
           date +%s > README.md 
