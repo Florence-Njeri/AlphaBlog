@@ -45,7 +45,6 @@ jobs:
           git config --global user.name "Florence Njeri"
           git config --global user.email "flonsie17@gmail.com"
           date +%s > README.md 
-          git fetch origin sync-translation-io
           git add .
           git commit -m "Automated translation.io sync"
           git push origin sync-translation-io -f
