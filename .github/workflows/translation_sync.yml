@@ -27,7 +27,7 @@ jobs:
 
       - name: Pull latest master locally
         run: |
-          git fetch origin/main
+          git fetch origin
           git checkout main
 
 
