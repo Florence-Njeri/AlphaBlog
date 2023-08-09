@@ -56,4 +56,5 @@ jobs:
           commit-message: "Auto-generated Translation Sync PR"
           title: "Auto-generated Translation.io Sync PR"
           body: "This PR was automatically generated to synchronize translations."
+          base: main
           branch: sync-translation-io
