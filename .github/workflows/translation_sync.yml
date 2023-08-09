@@ -49,15 +49,12 @@ jobs:
           git add .
           git commit -m "Automated translation.io sync"
           git push origin syncing-translation-io-timestamp
-
-      - name: Create and Merge Pull Request
-        uses: marvinpinto/action-automatic-releases@latest
+          
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
         with:
-          method: merge
-          branch: main
-          delete-branch: true
-          delete-merged-branch: true
           commit-message: "Auto-generated Translation Sync PR"
           title: "Auto-generated Translation.io Sync PR"
           body: "This PR was automatically generated to synchronize translations."
-          label: "auto-merge"
+          base: main
+          branch: syncing-translation-io-timestamp
