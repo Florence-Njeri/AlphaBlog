@@ -27,7 +27,7 @@ jobs:
 
       - name: Pull latest master locally
         run: |
-          git fetch origin
+          git fetch origin main
           git checkout main
 
 
@@ -45,6 +45,7 @@ jobs:
           git config --global user.name "Florence Njeri"
           git config --global user.email "flonsie17@gmail.com"
           date +%s > README.md
+          git branch --set-upstream-to=origin/main main
           git pull
           git add .
           git commit -m "Automated translation.io sync"
