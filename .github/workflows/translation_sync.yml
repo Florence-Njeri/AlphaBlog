@@ -46,6 +46,7 @@ jobs:
           date +%s > README.md
           git add .
           git commit -m "Automated translation.io sync"
+          git pull
           git push origin translation-sync-branch-timestamp
           git status
 
