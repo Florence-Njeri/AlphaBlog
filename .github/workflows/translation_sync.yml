@@ -46,7 +46,8 @@ jobs:
           git config --global user.email "flonsie17@gmail.com"
           date +%s > README.md
           git branch --set-upstream-to=origin/main translation-sync-branch-timestamp
-          git pull
+          git pull origin translation-sync-branch-timestamp
+          git merge origin/translation-sync-branch-timestamp 
           git add .
           git commit -m "Automated translation.io sync"
           git push origin translation-sync-branch-timestamp
