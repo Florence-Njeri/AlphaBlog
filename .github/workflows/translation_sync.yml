@@ -28,11 +28,11 @@ jobs:
       - name: Pull latest master locally
         run: |
           git checkout main
-          git pull origin main
 
       - name: Create new branch
         run: |
           git checkout -b translation-sync-branch-timestamp
+          git pull origin main
 
       - name: Run translation sync
         run: |
@@ -43,7 +43,7 @@ jobs:
          # Author identity
           git config --global user.name "Florence Njeri"
           git config --global user.email "flonsie17@gmail.com"
-          date +%s > README.md
+          "date +%s" > README.md
           git add .
           git commit -m "Automated translation.io sync"
           git push origin translation-sync-branch-timestamp
