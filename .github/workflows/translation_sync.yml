@@ -27,9 +27,9 @@ jobs:
 
       - name: Pull latest master locally
         run: |
-          git fetch origin main
+          git fetch origin
           git checkout main
-
+          git pull origin main
 
       - name: Create new branch
         run: |
@@ -45,9 +45,10 @@ jobs:
           git config --global user.name "Florence Njeri"
           git config --global user.email "flonsie17@gmail.com"
           date +%s > README.md 
+          git fetch origin translation-sync-branch-random
           git add .
           git commit -m "Automated translation.io sync"
-          git push origin translation-sync-branch-random
+          git push origin translation-sync-branch-random -f
           git status
 
       - name: Create Pull Request
