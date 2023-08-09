@@ -33,7 +33,7 @@ jobs:
 
       - name: Create new branch
         run: |
-          git checkout -b translation-sync-branch-timestamp
+          git checkout -b translation-sync-branch-random
 
       - name: Run translation sync
         run: |
@@ -45,12 +45,12 @@ jobs:
           git config --global user.name "Florence Njeri"
           git config --global user.email "flonsie17@gmail.com"
           date +%s > README.md
-          git branch --set-upstream-to=origin/main translation-sync-branch-timestamp
-          git pull origin translation-sync-branch-timestamp
-          git merge origin/translation-sync-branch-timestamp 
+          git branch --set-upstream-to=origin/main translation-sync-branch-random
+          git pull origin translation-sync-branch-random
+          git merge origin/translation-sync-branch-random 
           git add .
           git commit -m "Automated translation.io sync"
-          git push origin translation-sync-branch-timestamp
+          git push origin translation-sync-branch-random
           git status
 
       - name: Create Pull Request
@@ -59,4 +59,4 @@ jobs:
           commit-message: "Auto-generated Translation Sync PR"
           title: "Auto-generated Translation.io Sync PR"
           body: "This PR was automatically generated to synchronize translations."
-          branch: translation-sync-branch-timestamp
+          branch: translation-sync-branch-random
