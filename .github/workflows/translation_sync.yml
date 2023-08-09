@@ -33,7 +33,7 @@ jobs:
 
       - name: Create new branch
         run: |
-          git checkout -b syncing-translation-io-timestamp
+          git checkout -b sync-translation-io-timestamp
 
       - name: Run translation sync
         run: |
@@ -48,8 +48,8 @@ jobs:
           date +%s > README.md 
           git add .
           git commit -m "Automated translation.io sync"
-          git push origin syncing-translation-io-timestamp
-          
+          git push origin sync-translation-io-timestamp -f
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
@@ -57,4 +57,4 @@ jobs:
           title: "Auto-generated Translation.io Sync PR"
           body: "This PR was automatically generated to synchronize translations."
           base: main
-          branch: syncing-translation-io-timestamp
+          branch: sync-translation-io-timestamp
