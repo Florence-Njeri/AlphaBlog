@@ -46,16 +46,14 @@ jobs:
           # Author identity
           git config --global user.name "Florence-Njeri"
           git config --global user.email "flonsie17@gmail.com"
-          date +%s > README.md 
           git add .
           git commit -m "Automated translation.io sync"
           git push origin $(cat branch_name.txt)
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4.2.4
+      - name: Open Pull Request
+        uses: peter-evans/create-pull-request@v3
         with:
-          commit-message: "Auto-generated Translation Sync PR"
-          title: "Auto-generated Translation.io Sync PR"
-          body: "This PR was automatically generated to synchronize translations."
           base: main
           head: $(cat branch_name.txt)
+          title: "Auto-generated Translation.io Sync PR"
+          body: "This PR was automatically generated to synchronize translations."
