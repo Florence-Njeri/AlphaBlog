@@ -35,8 +35,8 @@ jobs:
         run: echo "sync-translation-io-$(date +'%s')"> branch_name.txt
 
       - name: Create Branch
-        # run: git checkout -b $(cat branch_name.txt)
-        run: git checkout -b boy-im-tired
+        run: git checkout -b $(cat branch_name.txt)
+        # run: git checkout -b boy-im-tired
 
 
       - name: Run translation sync
@@ -50,7 +50,7 @@ jobs:
           git config --global user.email "flonsie17@gmail.com"
           git add .
           git commit -m "Automated translation.io sync"
-          git push origin boy-im-tired
+          git push origin $(cat branch_name.txt)
 
       - name: Open Pull Request
         run: |
@@ -58,7 +58,7 @@ jobs:
             --title "Auto-generated Translation.io Sync PR" \
             --body "This PR was automatically generated to synchronize translations." \
             --base main \
-            --head boy-im-tired \
+            --head $(cat branch_name.txt) \
             --web)
           echo "Created PR: $pr_url"
         env:
