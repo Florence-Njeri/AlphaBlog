@@ -53,7 +53,10 @@ jobs:
       - name: Open Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          base: main
-          head: $(cat branch_name.txt)
+          commit-message: "Auto-generated Translation Sync PR"
           title: "Auto-generated Translation.io Sync PR"
           body: "This PR was automatically generated to synchronize translations."
+          base: main
+          labels: sync-translations
+          branch: $(cat branch_name.txt)
+          delete-branch: true
