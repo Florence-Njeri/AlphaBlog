@@ -53,11 +53,19 @@ jobs:
           git push origin boy-im-tired
 
       - name: Open Pull Request
-        uses: peter-evans/create-pull-request@v4
-        with:
-          commit-message: "Auto-generated Translation Sync PR"
-          title: "Auto-generated Translation.io Sync PR"
-          body: "This PR was automatically generated to synchronize translations."
-          base: main
-          labels: sync-translations
-          branch: boy-im-tired
+        run: |
+          pr_url=$(gh pr create \
+            --title "Auto-generated Translation.io Sync PR" \
+            --body "This PR was automatically generated to synchronize translations." \
+            --base main \
+            --head boy-im-tired \
+            --web)
+          echo "Created PR: $pr_url"
+        # uses: peter-evans/create-pull-request@v4
+        # with:
+        #   commit-message: "Auto-generated Translation Sync PR"
+        #   title: "Auto-generated Translation.io Sync PR"
+        #   body: "This PR was automatically generated to synchronize translations."
+        #   base: main
+        #   labels: sync-translations
+        #   branch: boy-im-tired
