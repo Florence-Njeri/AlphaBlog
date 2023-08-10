@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
- # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
@@ -13,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout repository code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -44,25 +43,20 @@ jobs:
 
       - name: Commit and push changes
         run: |
-         # Author identity
-          set -x
+          # Author identity
           git config --global user.name "Florence-Njeri"
           git config --global user.email "flonsie17@gmail.com"
           date +%s > README.md 
           git add .
           git commit -m "Automated translation.io sync"
-
-       - name: Push Changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.TOKEN }}
-          branch: $(cat branch_name.txt)
+          git push origin $(cat branch_name.txt)
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4.2.4 # use 4.2.4 https://github.com/peter-evans/create-pull-request/releases/tag/v4.2.4
+        uses: peter-evans/create-pull-request@v4.2.4
         with:
+          token: ${{ secrets.TOKEN }}
           commit-message: "Auto-generated Translation Sync PR"
           title: "Auto-generated Translation.io Sync PR"
           body: "This PR was automatically generated to synchronize translations."
           base: main
-          head: sync-translation-io-$(date +'%s')
+          head: $(cat branch_name.txt)
