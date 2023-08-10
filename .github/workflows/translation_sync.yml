@@ -53,8 +53,9 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@38e0b6e68b4c852a5500a94740f0e535e0d7ba54 # use 4.2.4 https://github.com/peter-evans/create-pull-request/releases/tag/v4.2.4
         with:
+          token: ${{ secrets.TOKEN }}
           commit-message: "Auto-generated Translation Sync PR"
           title: "Auto-generated Translation.io Sync PR"
           body: "This PR was automatically generated to synchronize translations."
           base: main
-          branch: sync-translation-io-timestamp
+          head: sync-translation-io-timestamp
