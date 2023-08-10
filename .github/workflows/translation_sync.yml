@@ -61,4 +61,3 @@ jobs:
           base: main
           labels: sync-translations
           branch: boy-im-tired
-          delete-branch: true
