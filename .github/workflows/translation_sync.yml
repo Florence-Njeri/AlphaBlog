@@ -36,8 +36,6 @@ jobs:
 
       - name: Create Branch
         run: git checkout -b $(cat branch_name.txt)
-        # run: git checkout -b boy-im-tired
-
 
       - name: Run translation sync
         run: |
@@ -53,23 +51,6 @@ jobs:
           git push origin $(cat branch_name.txt)
 
       - name: Open Pull Request
-        run: gh pr create --title "The fix" --body "This fixes the issue"
-          # pr_url=$(gh pr create \
-          #   --title "Auto-generated Translation Sync PR" \
-          #   --body "This PR was automatically generated to synchronize translations." \
-          #   --base main \
-          #   --head $(cat branch_name.txt) \
-          #   --web)
-          # pr_content=$(curl -s "$pr_url")
-          # echo "Pull Request URL: $pr_url"
-          # echo "Pull Request Content: $pr_content"
+        run: gh pr create --title "Auto-generated Translation Sync PR" --body "This PR was automatically generated to synchronize translations."
         env:
             GH_TOKEN: ${{ github.token }}
-        # uses: peter-evans/create-pull-request@v4
-        # with:
-        #   commit-message: "Auto-generated Translation Sync PR"
-        #   title: "Auto-generated Translation.io Sync PR"
-        #   body: "This PR was automatically generated to synchronize translations."
-        #   base: main
-        #   labels: sync-translations
-        #   branch: boy-im-tired
