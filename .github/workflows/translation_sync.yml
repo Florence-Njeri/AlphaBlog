@@ -31,9 +31,12 @@ jobs:
           git checkout main
           git pull origin main
 
-      - name: Create new branch
-        run: |
-          git checkout -b sync-translation-io-timestamp
+      - name: Generate Unique Branch Name
+        id: branch_name
+        run: echo "sync-translation-io-$(date +'%Y%m%d')-$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 6 | head -n 1)" > branch_name.txt
+
+      - name: Create Branch
+        run: git checkout -b $(cat branch_name.txt)
 
       - name: Run translation sync
         run: |
@@ -48,7 +51,12 @@ jobs:
           date +%s > README.md 
           git add .
           git commit -m "Automated translation.io sync"
-          git push origin sync-translation-io-timestamp -f
+
+       - name: Push Changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.TOKEN }}
+          branch: $(cat branch_name.txt)
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4.2.4 # use 4.2.4 https://github.com/peter-evans/create-pull-request/releases/tag/v4.2.4
@@ -57,4 +65,4 @@ jobs:
           title: "Auto-generated Translation.io Sync PR"
           body: "This PR was automatically generated to synchronize translations."
           base: main
-          head: sync-translation-io-timestamp
+          head: sync-translation-io-$(date +'%s')
