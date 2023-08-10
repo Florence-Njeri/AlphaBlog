@@ -60,7 +60,9 @@ jobs:
             --base main \
             --head $(cat branch_name.txt) \
             --web)
-          echo "Created PR: $pr_url"
+          pr_content=$(curl -s "$pr_url")
+          echo "Pull Request URL: $pr_url"
+          echo "Pull Request Content: $pr_content"
         env:
             GH_TOKEN: ${{ github.token }}
         # uses: peter-evans/create-pull-request@v4
